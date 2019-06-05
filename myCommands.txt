@@ -14,3 +14,8 @@ python -m ipykernel install --user --name team_binder --display-name "Py - binde
 conda env export > environment.yml
 
 conda env export --no-builds -f environment.yml
+
+--------------
+
+pip freeze > requirements.txt
+pip install --user -r requirements.txt
