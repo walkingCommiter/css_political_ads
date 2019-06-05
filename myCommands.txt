@@ -1,0 +1,14 @@
+# useful commands you need:
+pip install –r requirements.txt
+pip install --user -r requirements.txt
+
+conda install  xxx
+
+conda activate binder_env
+conda deactivate
+
+# iPython
+python -m ipykernel install --user --name team_binder --display-name "Py - binder"
+
+#export
+conda env export > environment.yml
