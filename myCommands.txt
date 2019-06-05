@@ -6,9 +6,11 @@ conda install  xxx
 
 conda activate binder_env
 conda deactivate
-
+pip install -r requirements.txt
 # iPython
 python -m ipykernel install --user --name team_binder --display-name "Py - binder"
 
 #export
 conda env export > environment.yml
+
+conda env export --no-builds -f environment.yml
