@@ -13,16 +13,16 @@ import pandas as pd
 
 
 #importing the dataset
-dataset= pd.read_excel('data_IRA_Ads.xlsx')
+dataset= pd.read_excel('Cleaning_data.xlsx')
 data= dataset.iloc [:,:].values
 
 #splitting the dataset into two
 from sklearn.cross_validation import  train_test_split
 x_Part1 ,x_Part2 = train_test_split(data,test_size=0.05,random_state=0)
 df = pd.DataFrame(x_Part2)
-Dataset_to_be_lebeled = open("Dataset_to_be_labelled.csv", "x")
+Dataset_to_be_labelled = open("Dataset_to_be_labelled.csv", "w+")
 df.columns = list(dataset.columns.values)
-df.to_csv(Dataset_to_be_lebeled, encoding='utf-8', index=False)
+df.to_csv(Dataset_to_be_labelled, encoding='utf-8', index=False)
 
 #################################
 ####################CTR or Click Through Rate in internet marketing = Clicks / Impressions * 100
@@ -76,4 +76,14 @@ plt.xticks(np.arange(0,dataset['CTR'].max(),5))
 
 plt.show()
 
+################################
+plt.figure(figsize=(20,20))
+plt.xlabel('AD_TARGETING_AGE')
+plt.ylabel('CTR')
+plt.plot(dataset['AD_TARGETING_AGE'], dataset['CTR'], '*')
+#plt.axis([0, 101, 0,dataset['AD_TARGETING_AGE'].max() ])
+#plt.yticks(np.arange(0,dataset['AD_SPEND'].max(),5000))
+plt.yticks(np.arange(0,dataset['CTR'].max(),5))
+
+plt.show()
 
