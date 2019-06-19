@@ -29,6 +29,7 @@ Dictionary method for labeling using: SentiWordNet.
 
 ## codes for using the dictionary:
 https://github.com/aesuli/SentiWordNet
+
 https://github.com/anelachan/sentimentanalysis
 
 
@@ -36,6 +37,7 @@ https://github.com/anelachan/sentimentanalysis
 
 Too Naïve:
 http://www.laurentluce.com/posts/twitter-sentiment-analysis-using-python-and-nltk/
+
 Java code:
 https://nlp.stanford.edu/sentiment/code.html
 
