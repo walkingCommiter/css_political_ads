@@ -78,12 +78,20 @@ plt.show()
 
 ################################
 plt.figure(figsize=(20,20))
-plt.xlabel('AD_TARGETING_AGE')
-plt.ylabel('CTR')
-plt.plot(dataset['AD_TARGETING_AGE'], dataset['CTR'], '*')
-#plt.axis([0, 101, 0,dataset['AD_TARGETING_AGE'].max() ])
+plt.xlabel('CTR')
+plt.ylabel('AD_TARGETING_AGE')
+plt.plot(dataset['CTR'], dataset['AD_TARGETING_AGE'], '*')
+plt.axis([0, 101, 0,dataset['AD_TARGETING_AGE'].max() ])
 #plt.yticks(np.arange(0,dataset['AD_SPEND'].max(),5000))
-plt.yticks(np.arange(0,dataset['CTR'].max(),5))
+plt.xticks(np.arange(0,100,5))
 
 plt.show()
+####################################
+##import numpy as np
+from scipy.stats import kurtosis, skew
+
+##x = np.random.normal(0, 2, 10000)   # create random values based on a normal distribution
+
+print( 'excess kurtosis of normal distribution (should be 0): {}'.format( kurtosis(dataset['AD_SPEND']) ))
+print( 'skewness of normal distribution (should be 0): {}'.format( skew(dataset['AD_SPEND']) ))
 
