@@ -94,4 +94,78 @@ from scipy.stats import kurtosis, skew
 
 print( 'excess kurtosis of normal distribution (should be 0): {}'.format( kurtosis(dataset['AD_SPEND']) ))
 print( 'skewness of normal distribution (should be 0): {}'.format( skew(dataset['AD_SPEND']) ))
+#######################
 
+for index, row in dataset.iterrows():
+    type (row['AD_TARGETING_AGE'])
+    
+age_list = dataset['AD_TARGETING_AGE'].tolist()
+
+teen =  []
+youngAdult = []
+adult = []
+middleAge=[] 
+Senior =[] 
+l=[]
+i=0
+while i < len(age_list):
+    k=age_list[i].replace("+","")
+    k= k.split("-")
+    l.append(k)
+    i+=1
+j=0
+
+while j < len(l):
+    if((int(l[j][0])>= 13 and int(l[j][0]) <=17)or(int(l[j][1])>= 13 and int(l[j][1]) <=17)):
+        teen.insert(j,1)
+    else:teen.insert(j,0)
+    if((int(l[j][0])>= 18 and int(l[j][0]) <=35)or(int(l[j][1])>= 35 )):
+        youngAdult.insert(j,1)
+    else:youngAdult.insert(j,0)
+    if((int(l[j][0])>= 36 and int(l[j][0]) <=45)or(int(l[j][1])>= 44 )):
+        adult.insert(j,1)
+    else:adult.insert(j,0)
+    if((int(l[j][0])>= 45 and int(l[j][0]) <=65)or(int(l[j][1])>= 45 and int(l[j][1]) <=65)):
+        middleAge.insert(j,1)
+    else:middleAge.insert(j,0)
+    j+=1
+    
+###
+dataset["Teen"]=teen
+dataset["Young Adult"]=youngAdult
+dataset["Adult"]=adult
+dataset["Middle Age"]=middleAge
+####
+Adsteen=len([x for x in teen if x > 0])
+AdsYoung=len([x for x in youngAdult if x > 0])
+AdsAdult=len([x for x in adult if x > 0])
+AdsMiddle=len([x for x in middleAge if x > 0])
+
+#####
+CTR_Age=[0,0,0,0]
+for index, row in dataset.iterrows():
+    if row['Teen']==1 :
+        CTR_Age[0]+= row['CTR']
+        
+    else:
+        CTR_Age[0]+= 0
+ 
+    if row['Young Adult']==1 :
+        CTR_Age[1]+= row['CTR']
+    else:
+        CTR_Age[1]+= 0
+        
+    if row['Adult']==1 :
+        CTR_Age[2]+= row['CTR']
+    else:
+        CTR_Age[2]+= 0
+        
+    if row['Middle Age']==1 :
+        CTR_Age[3]+= row['CTR']
+        
+    else:
+        CTR_Age[3]+= 0
+CTR_Age[0]=CTR_Age[0]/Adsteen
+CTR_Age[1]=CTR_Age[1]/AdsYoung
+CTR_Age[2]=CTR_Age[2]/AdsAdult
+CTR_Age[3]=CTR_Age[3]/AdsMiddle
